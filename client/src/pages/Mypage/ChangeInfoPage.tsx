@@ -41,7 +41,7 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
     setPhone(e.target.value);
   };
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    const val = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/.test(e.target.value); // 문자와 숫자로 조합된 8자리 이상으로 비밀번호가 구성되었는지 확인
+    const val = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/.test(e.target.value); // 문자, 숫자, 특수문자 조합된 8자리 이상으로 비밀번호가 구성되었는지 확인
     if (val) {
       // true
       setPassword(e.target.value); // 비밀번호를 저장
@@ -82,7 +82,11 @@ const InfoTable = ({ setBody, userInfo, isOauth }: TableProsp) => {
             <tr>
               <StyledTh>비밀번호변경</StyledTh>
               <StyledTd>
-                <input onChange={handlePassword} type="password" placeholder="비밀번호를 입력하세요"></input>
+                <input
+                  onChange={handlePassword}
+                  type="password"
+                  placeholder="문자, 숫자, 특수문자를 결합해 8자 이상"
+                ></input>
               </StyledTd>
             </tr>
             <tr>
